@@ -2,59 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculator</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's over 9000</title>
 </head>
 <body>
-    <h1>Basic Calculator</h1>
-    <input type="text" id="left" placeholder="Left number">
-    <select id="operator">
-        <option value="+">+</option>
-        <option value="-">-</option>
-        <option value="*">*</option>
-        <option value="/">/</option>
-        <option value="%">%</option>
-    </select>
-    <input type="text" id="right" placeholder="Right number">
-    <input type="submit" value="Try me!" onclick="calculate()">
+    <input type="text" id="num1" name="num1" placeholder="Number 1">
+        <select name="operator" id="operator">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+            <option>%</option>
+        </select>
+        <input type="text" id="num2" name="num2" placeholder="Number 2">
+        <button type="submit" onclick="calc()" name="submit" value="submit">Try me</button>
+        
+</body>
+<script>
+    function calc(){
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            const operator = document.getElementById("operator").value;
+            let answer = 0;
 
-    <script>
-        function calculate() {
-            const left = document.getElementById("left").value.trim();
-            const right = document.getElementById("right").value.trim();
-            const op = document.getElementById("operator").value;
-
-            // ตรวจสอบว่าเป็นจำนวนเต็มบวกเท่านั้น
-            if (!/^\d+$/.test(left) || !/^\d+$/.test(right)) {
-                alert("Error :(");
+            if(isNaN(num1) || isNaN(num2)){
+                alert("Error");
                 return;
             }
-
-            const a = parseInt(left, 10);
-            const b = parseInt(right, 10);
-
-            // ตรวจสอบหารหรือ modulo ด้วย 0
-            if ((op === "/" || op === "%") && b === 0) {
-                alert("It's over 9000!");
-                console.log("It's over 9000!");
+            else if(num1 < 0 || num2 < 0){
+                alert("Error");
                 return;
             }
+            switch(operator){
+                case"+":
+                    answer = num1 + num2;
+                    break;
 
-            let result;
-            switch (op) {
-                case "+": result = a + b; break;
-                case "-": result = a - b; break;
-                case "*": result = a * b; break;
-                case "/": result = a / b; break;
-                case "%": result = a % b; break;
+                case"-":
+                    answer = num1 - num2;
+                    break;
+                case"*":
+                    answer = num1 * num2;
+                    break;
+                case"/":
+                    answer = num1 / num2;
+                    if(num2 == 0){
+                        alert("It's over 9000!");
+                        console.log(answer);
+                        return;
+                    }
+                    break; 
+                case"%":
+                    answer = num1 % num2;
+                    if (num2 == 0){
+                        alert("It's over 9000!");
+                        console.log(answer);
+                        return;
+                    }
+                    break;
+                default:
+                    answer = "Error";
             }
-
-            alert(result);
-            console.log(result);
+            
+            alert(answer);
+            console.log(answer);
         }
 
-        setInterval(() => {
+        function interval(){
             alert("Please, use me...");
-        }, 30000);
-    </script>
-</body>
+        }
+
+        setInterval(interval, 30000);
+</script>
 </html>
