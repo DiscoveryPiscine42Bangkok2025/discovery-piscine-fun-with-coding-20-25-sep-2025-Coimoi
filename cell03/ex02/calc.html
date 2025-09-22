@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+</head>
+<body>
+    <h1>Basic Calculator</h1>
+    <input type="text" id="left" placeholder="Left number">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="right" placeholder="Right number">
+    <input type="submit" value="Try me!" onclick="calculate()">
+
+    <script>
+        function calculate() {
+            const left = document.getElementById("left").value.trim();
+            const right = document.getElementById("right").value.trim();
+            const op = document.getElementById("operator").value;
+
+            // ตรวจสอบว่าเป็นจำนวนเต็มบวกเท่านั้น
+            if (!/^\d+$/.test(left) || !/^\d+$/.test(right)) {
+                alert("Error :(");
+                return;
+            }
+
+            const a = parseInt(left, 10);
+            const b = parseInt(right, 10);
+
+            // ตรวจสอบหารหรือ modulo ด้วย 0
+            if ((op === "/" || op === "%") && b === 0) {
+                alert("It's over 9000!");
+                console.log("It's over 9000!");
+                return;
+            }
+
+            let result;
+            switch (op) {
+                case "+": result = a + b; break;
+                case "-": result = a - b; break;
+                case "*": result = a * b; break;
+                case "/": result = a / b; break;
+                case "%": result = a % b; break;
+            }
+
+            alert(result);
+            console.log(result);
+        }
+
+        setInterval(() => {
+            alert("Please, use me...");
+        }, 30000);
+    </script>
+</body>
+</html>
