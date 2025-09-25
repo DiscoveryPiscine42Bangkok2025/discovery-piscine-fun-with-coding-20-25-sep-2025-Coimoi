@@ -189,7 +189,7 @@ h2 {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     text-align: center;
     width: 80%;
-    height: 90%;
+    padding: 20px;
     max-height: 100%;
     max-width: 80%;
 }
@@ -203,7 +203,6 @@ h2 {
 
 h4 {
     color: #333;
-    margin-top: 30px;
     font-size: 24px;
 }
 
