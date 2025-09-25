@@ -192,6 +192,7 @@ h2 {
     padding: 20px;
     max-height: 100%;
     max-width: 80%;
+    overflow: hidden;
 }
 
 .contact-box a {
